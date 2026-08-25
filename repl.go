@@ -1,0 +1,47 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func cleanInput(text string) []string {
+	text = strings.ToLower(text)
+	return strings.Fields(text)
+}
+
+func startREPL(cfg *config) {
+	scanner := bufio.NewScanner(os.Stdin)
+	for {
+		fmt.Print("Pokedex > ")
+		if scanner.Scan() {
+			text := cleanInput(scanner.Text())
+			command := text[0]
+			switch command {
+			case "help":
+				if err := commandHelp(cfg); err != nil {
+					fmt.Printf("Error help command: %v\n", err)
+				}
+			case "exit":
+				if err := commandExit(cfg); err != nil {
+					fmt.Printf("Error exit command: %v\n", err)
+				}
+			case "map":
+				if err := commandMap(cfg); err != nil {
+					fmt.Printf("Error map command: %v\n", err)
+				}
+			case "mapb":
+				if err := commandMapb(cfg); err != nil {
+					fmt.Printf("Error mapb command: %v\n", err)
+				}
+			default:
+				fmt.Println("Unknown command")
+			}
+		}
+		if err := scanner.Err(); err != nil {
+			fmt.Println("Data reading error: ", err)
+		}
+	}
+}

@@ -1,9 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"time"
+
+	"github.com/nukz87/PokedexInGo/internal/pokeapi"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	cfg := &config{
+		pokeClient:          pokeapi.NewClient(5 * time.Second),
+		nextLocationURL:     new(string),
+		previousLocationURL: new(string),
+		commandList:         getCommand(),
+	}
+	startREPL(cfg)
 }
