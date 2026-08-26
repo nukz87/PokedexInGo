@@ -52,6 +52,18 @@ func startREPL(cfg *config) {
 				if err := commandCatch(cfg, text[1]); err != nil {
 					fmt.Printf("Error catch command: %v\n", err)
 				}
+			case "inspect":
+				if len(text) < 2 {
+					fmt.Println("inspect Usage: inspect 'pokemon-name'")
+					continue
+				}
+				if err := commandInspect(cfg, text[1]); err != nil {
+					fmt.Printf("Error inspect command: %v\n", err)
+				}
+			case "pokedex":
+				if err := commandPokedex(cfg); err != nil {
+					fmt.Printf("Error pokedex command: %v\n", err)
+				}
 			default:
 				fmt.Println("Unknown command")
 			}
