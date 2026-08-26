@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func commandMapb(cfg *config) error {
+func commandMapb(cfg *config, arg ...string) error {
 	var URL *string
 	if *cfg.previousLocationURL != "" {
 		URL = cfg.previousLocationURL

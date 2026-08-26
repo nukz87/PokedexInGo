@@ -1,11 +1,13 @@
 package main
 
-import "github.com/nukz87/PokedexInGo/internal/pokeapi"
+import (
+	"github.com/nukz87/PokedexInGo/internal/pokeapi"
+)
 
 type cliCommand struct {
 	name        string
 	description string
-	callBack    func(*config) error
+	callBack    func(*config, ...string) error
 }
 
 type config struct {
@@ -29,13 +31,18 @@ func getCommand() map[string]cliCommand {
 		},
 		"map": {
 			name:        "map",
-			description: "Print a list of location areas/Next page of the list",
+			description: "Print a list of location areas/ Next page of the list",
 			callBack:    commandMap,
 		},
 		"mapb": {
 			name:        "mapb",
-			description: "Print a list of location areas/Previous page of the list",
+			description: "Print a list of location areas/ Previous page of the list",
 			callBack:    commandMapb,
+		},
+		"explore": {
+			name:        "explore 'location-area-name'",
+			description: "Print a list of pokemons found in 'location-area-name'",
+			callBack:    commandExplore,
 		},
 	}
 }

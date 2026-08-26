@@ -16,7 +16,7 @@ func (c *Client) ListLocationAreas(pageURL *string) (RespLocationAreasStruct, er
 	if entry, ok := c.pokeCache.Get(url); ok {
 		var finalStruct RespLocationAreasStruct
 		if err := json.Unmarshal(entry, &finalStruct); err != nil {
-			return RespLocationAreasStruct{}, fmt.Errorf("Error get from cache: %v", err)
+			return RespLocationAreasStruct{}, fmt.Errorf("Error json umarshaling: %v", err)
 		}
 		return finalStruct, nil
 	}

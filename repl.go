@@ -36,6 +36,14 @@ func startREPL(cfg *config) {
 				if err := commandMapb(cfg); err != nil {
 					fmt.Printf("Error mapb command: %v\n", err)
 				}
+			case "explore":
+				if len(text) < 2 {
+					fmt.Println("explore Usage: explore + 'location-area-name'")
+					continue
+				}
+				if err := commandExplore(cfg, text[1]); err != nil {
+					fmt.Printf("Error explore command: %v\n", err)
+				}
 			default:
 				fmt.Println("Unknown command")
 			}
