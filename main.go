@@ -8,6 +8,7 @@ import (
 
 func main() {
 	cfg := &config{
+		pokedex:             make(map[string]pokeapi.Pokemon),
 		pokeClient:          pokeapi.NewClient(5 * time.Second),
 		nextLocationURL:     new(string),
 		previousLocationURL: new(string),

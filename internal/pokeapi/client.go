@@ -8,6 +8,7 @@ import (
 )
 
 type Client struct {
+	pokePC     map[string]Pokemon
 	pokeCache  pokecache.Cache
 	httpClient http.Client
 }

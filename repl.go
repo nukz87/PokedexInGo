@@ -38,11 +38,19 @@ func startREPL(cfg *config) {
 				}
 			case "explore":
 				if len(text) < 2 {
-					fmt.Println("explore Usage: explore + 'location-area-name'")
+					fmt.Println("explore Usage: explore 'location-area-name'")
 					continue
 				}
 				if err := commandExplore(cfg, text[1]); err != nil {
 					fmt.Printf("Error explore command: %v\n", err)
+				}
+			case "catch":
+				if len(text) < 2 {
+					fmt.Println("catch Usage: catch 'pokemon-name'")
+					continue
+				}
+				if err := commandCatch(cfg, text[1]); err != nil {
+					fmt.Printf("Error catch command: %v\n", err)
 				}
 			default:
 				fmt.Println("Unknown command")

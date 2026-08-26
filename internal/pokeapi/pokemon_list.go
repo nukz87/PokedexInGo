@@ -37,12 +37,12 @@ func (c *Client) ListPokemon(pageURL *string) (RespPokemonInLocationAreas, error
 	if err != nil {
 		return RespPokemonInLocationAreas{}, fmt.Errorf("Error convert io.ReadCloser to []byte: %v", err)
 	}
+	c.pokeCache.Add(URL, data)
 
 	var finalStruct RespPokemonInLocationAreas
 	if err := json.Unmarshal(data, &finalStruct); err != nil {
 		return RespPokemonInLocationAreas{}, fmt.Errorf("Error json unmarshaling: %v", err)
 	}
-	c.pokeCache.Add(URL, data)
 
 	return finalStruct, nil
 }

@@ -1,5 +1,10 @@
 package pokeapi
 
+type Pokemon struct {
+	Name            string `json:"name"`
+	Base_Experience int    `json:"base_experience"`
+}
+
 type RespLocationAreasStruct struct {
 	Count    int    `json:"count"`
 	Next     string `json:"next"`
