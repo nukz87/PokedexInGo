@@ -15,7 +15,7 @@ func cleanInput(text string) []string {
 func startREPL(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Print("Pokedex > ")
+		fmt.Print("$ Pokedex > ")
 		if scanner.Scan() {
 			text := cleanInput(scanner.Text())
 			command := text[0]
